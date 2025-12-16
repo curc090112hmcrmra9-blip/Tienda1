@@ -1,0 +1,32 @@
+{% extends 'extras/navegacion.html' %}
+{% load static %}
+{% block pag %}
+
+<h1>Buscar Store</h1>
+
+<form method="GET" action="{% url 'filtro_stores' %}">
+    <input 
+        type="text" 
+        id="kword" 
+        name="kword"
+        placeholder="Ingrese store aquí"
+        value="{{ request.GET.kword }}"
+    >
+    <button type="submit">Buscar</button>    
+</form>
+
+<h3>Lista de resultados de stores</h3>
+
+<ul>
+    {% for s in stores %}
+        <li>
+            {{ s.name }} - {{ s.description }}
+        </li>
+    {% empty %}
+        <li>No se encontraron stores</li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
+
